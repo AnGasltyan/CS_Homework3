@@ -1,0 +1,144 @@
+using System;
+
+class RefParameters
+{
+    static void Main()
+    {
+        Console.Write("Enter the value of a: ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of b: ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of c: ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        double x1, x2;
+        SolveQuadraticRef(a, b, c, out x1, out x2);
+
+        Console.WriteLine($"Ref Parameters: x1 = {x1}, x2 = {x2}");
+    }
+
+    static void SolveQuadraticRef(double a, double b, double c, out double x1, out double x2)
+    {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant >= 0)
+        {
+            x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+        }
+        else
+        {
+            x1 = x2 = double.NaN; 
+        }
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------
+using System;
+
+class TupleSolution
+{
+    static void Main()
+    {
+        Console.Write("Enter the value of a: ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of b: ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of c: ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        var resultTuple = SolveQuadraticTuple(a, b, c);
+
+        Console.WriteLine($"Tuple: x1 = {resultTuple.Item1}, x2 = {resultTuple.Item2}");
+    }
+
+    static Tuple<double, double> SolveQuadraticTuple(double a, double b, double c)
+    {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant >= 0)
+        {
+            double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            return Tuple.Create(x1, x2);
+        }
+        else
+        {
+            return Tuple.Create(double.NaN, double.NaN); 
+        }
+    }
+}
+//--------------------------------------------------------------------------------------------------------
+using System;
+
+class ArraySolution
+{
+    static void Main()
+    {
+        Console.Write("Enter the value of a: ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of b: ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of c: ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        double[] resultArray = SolveQuadraticArray(a, b, c);
+
+        Console.WriteLine($"Array: x1 = {resultArray[0]}, x2 = {resultArray[1]}");
+    }
+
+    static double[] SolveQuadraticArray(double a, double b, double c)
+    {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant >= 0)
+        {
+            double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            return new double[] { x1, x2 };
+        }
+        else
+        {
+            return new double[] { double.NaN, double.NaN }; 
+        }
+    }
+}
+//-----------------------------------------------------------------------------------------
+using System;
+
+class DeconstructSolution
+{
+    static void Main()
+    {
+        Console.Write("Enter the value of a: ");
+        double a = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of b: ");
+        double b = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter the value of c: ");
+        double c = Convert.ToDouble(Console.ReadLine());
+
+        var (x1, x2) = SolveQuadraticDeconstruct(a, b, c);
+
+        Console.WriteLine($"Deconstructing: x1 = {x1}, x2 = {x2}");
+    }
+
+    static (double x1, double x2) SolveQuadraticDeconstruct(double a, double b, double c)
+    {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant >= 0)
+        {
+            double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            return (x1, x2);
+        }
+        else
+        {
+            return (double.NaN, double.NaN); 
+        }
+    }
+}
